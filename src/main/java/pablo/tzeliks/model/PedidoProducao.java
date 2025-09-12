@@ -9,7 +9,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class PedidoProducao {
 
-    private final int id;
+    private int id;
     private Equipamento prototipo;
     private final int quantidadeProduzir;
     private final Map<CodigoProducao, StatusProducao> itensProducao;
@@ -26,6 +26,7 @@ public class PedidoProducao {
 
     // Getters
     public int getIdPedido() { return id; }
+    public void setIdPedido(int id) { this.id = id }
     public Equipamento getPrototipo() { return prototipo; }
     public int getQuantidadeAProduzir() { return quantidadeProduzir; }
     public Map<CodigoProducao, StatusProducao> getItensProduzidos() { return itensProducao; }
