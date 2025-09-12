@@ -7,23 +7,18 @@ import pablo.tzeliks.service.util.CodigoProducaoFactory;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
-/**
- * Simula uma linha de produção que executa UM PedidoProducao específico e depois encerra.
- */
 public class LinhaDeProducao implements Runnable {
 
-    private final String nomeLinha;
     private final PedidoProducao pedido;
     private static final AtomicInteger contadorSerial = new AtomicInteger(1);
 
-    public LinhaDeProducao(String nomeLinha, PedidoProducao pedido) {
-        this.nomeLinha = nomeLinha;
+    public LinhaDeProducao(PedidoProducao pedido) {
         this.pedido = pedido;
     }
 
     @Override
     public void run() {
-        System.out.println("- " + nomeLinha + " iniciou.");
+        System.out.println("Linha de Produção de ID " + contadorSerial + " | Acabou de Iniciar");
 
         for (int i = 0; i < pedido.getQuantidadeAProduzir(); i++) {
             StatusProducao status = StatusProducao.getRandomStatus();
@@ -32,17 +27,17 @@ public class LinhaDeProducao implements Runnable {
 
             pedido.registrarItemProduzido(codigoProducao, status);
 
-            System.out.println("\uD83D\uDCE6 " + " - " + nomeLinha + " acabou de produzir " + codigoProducao + " | Status: " + status);
+            System.out.println("\uD83D\uDCE6 " + " - Linha de Produção acabou de produzir " + codigoProducao + " | Status: " + status);
 
             try {
                 Thread.sleep((long) (Math.random() * 200 + 50)); // Simula tempo
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
-                System.err.println("🛑 " + nomeLinha + " foi interrompida.");
+                System.err.println("🛑 Linha de ID " + contadorSerial + " foi interrompida.");
                 break;
             }
         }
-        System.out.println("✅ " + nomeLinha + " finalizou.");
+        System.out.println("✅ Linha de Produção de ID " + contadorSerial + " finalizou.");
     }
 
 //    private Equipamento criarInstancia(Equipamento prototipo) {

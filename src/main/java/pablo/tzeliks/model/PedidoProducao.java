@@ -1,7 +1,6 @@
 package pablo.tzeliks.model;
 
 import pablo.tzeliks.exceptions.ProducaoException;
-import pablo.tzeliks.model.domain.Codigo;
 import pablo.tzeliks.model.domain.CodigoProducao;
 import pablo.tzeliks.model.enums.StatusProducao;
 

@@ -42,6 +42,12 @@ public class ConsoleController {
                 case 6:
                     BuscaAvancadaView.executar(scanner, service);
                     break;
+                case 7:
+                    CriarPedidoDeProducao.executar(scanner, service);
+                    break;
+                case 8:
+                    IniciarLinhaDeProducao.executar(scanner, service);
+                    break;
                 case 0:
                     System.out.println("Saindo...");
                     break;
