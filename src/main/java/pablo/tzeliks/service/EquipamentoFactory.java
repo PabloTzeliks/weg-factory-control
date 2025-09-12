@@ -1,25 +1,21 @@
 package pablo.tzeliks.service;
 
+import org.mapstruct.factory.Mappers;
+import pablo.tzeliks.mapper.EquipamentoMapper;
 import pablo.tzeliks.model.Equipamento;
-import pablo.tzeliks.model.MotorEletrico;
-import pablo.tzeliks.model.PainelControle;
-import pablo.tzeliks.model.domain.Codigo;
-import pablo.tzeliks.view.EquipamentoDTO;
+import pablo.tzeliks.dto.EquipamentoDTO;
 
 public class EquipamentoFactory {
 
-    public static Equipamento InstanceOf(EquipamentoDTO equipamentoDTO) {
+    private static final EquipamentoMapper mapper = Mappers.getMapper(EquipamentoMapper.class);
+
+    public static Equipamento fromDTO(EquipamentoDTO dto) {
 
         try {
-
-            switch(equipamentoDTO.tipoEquipamento()) {
+            switch(dto.tipoEquipamento()) {
 
                 case MOTOR_ELETRICO : {
-                    return new MotorEletrico(equipamentoDTO.id(), equipamentoDTO.nome(), equipamentoDTO.codigo(), equipamentoDTO.quantidade(), equipamentoDTO.preco(), equipamentoDTO.tipoEquipamento(), equipamentoDTO.potencia());
-                }
-
-                case PAINEL_CONTROLE : {
-                    return new PainelControle(equipamentoDTO.id(), equipamentoDTO.nome(), equipamentoDTO.codigo(), equipamentoDTO.quantidade(), equipamentoDTO.preco(), equipamentoDTO.tipoEquipamento(), equipamentoDTO.tensao());
+                    return mapper.toMotorEletrico(dto);
                 }
 
             }

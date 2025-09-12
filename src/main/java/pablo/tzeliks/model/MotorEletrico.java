@@ -2,7 +2,6 @@ package pablo.tzeliks.model;
 
 import pablo.tzeliks.model.domain.Codigo;
 import pablo.tzeliks.model.enums.TipoEquipamento;
-import pablo.tzeliks.view.EquipamentoDTO;
 
 public class MotorEletrico extends Equipamento {
 
