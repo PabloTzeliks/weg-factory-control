@@ -1,6 +1,7 @@
 package pablo.tzeliks;
 
 import pablo.tzeliks.service.EstoqueService;
+import pablo.tzeliks.service.ProducaoService;
 import pablo.tzeliks.view.ConsoleController;
 
 /*
@@ -27,12 +28,13 @@ import pablo.tzeliks.view.ConsoleController;
 
  */
 
-public class 2Main {
+public class Main {
     public static void main(String[] args) {
 
-        EstoqueService service = new EstoqueService();
+        EstoqueService serviceEstoque = new EstoqueService();
+        ProducaoService serviceProducao = new ProducaoService();
 
-        ConsoleController inicio = new ConsoleController(service);
+        ConsoleController inicio = new ConsoleController(serviceEstoque, serviceProducao);
 
         inicio.iniciar();
     }

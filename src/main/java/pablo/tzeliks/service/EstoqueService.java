@@ -158,12 +158,13 @@ public class EstoqueService implements CrudEstoqueInterface<EquipamentoDTO>, Rel
 
     // ---------- Helpers internos (entidades) ----------
 
-    private Equipamento acharPorCodigoEntidade(Codigo codigo) {
+    // Deixar público fere em partes o Encapsulamento e a Segurança, porém como versão inicial será feito assim.
+    public Equipamento acharPorCodigoEntidade(Codigo codigo) {
         if (codigo == null) return null;
         return estoque.stream().filter(e -> codigo.equals(e.getCodigo())).findFirst().orElse(null);
     }
 
-    private Equipamento acharPorIdEntidade(int id) {
+    public Equipamento acharPorIdEntidade(int id) {
         return estoque.stream().filter(e -> e.getId() == id).findFirst().orElse(null);
     }
 

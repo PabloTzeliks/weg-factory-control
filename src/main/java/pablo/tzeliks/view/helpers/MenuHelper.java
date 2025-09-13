@@ -3,16 +3,17 @@ package pablo.tzeliks.view.helpers;
 public class MenuHelper {
 
     public static void imprimirMenuPrincipal() {
-        System.out.println("====================================");
-        System.out.println("  Sistema Controle de Equipamentos  ");
-        System.out.println("====================================");
+        System.out.println("=======================================");
+        System.out.println("  Sistema de Produção de Equipamentos  ");
+        System.out.println("=======================================");
         System.out.println("1 - Cadastrar Equipamento");
         System.out.println("2 - Listar Equipamentos");
         System.out.println("3 - Pesquisar Equipamento por Código");
         System.out.println("4 - Remover Equipamento por Código");
-        System.out.println("5 - Movimentar Estoque (Adicionar/Retirar Quantidade)");
-        System.out.println("6 - Relatórios de Estoque");
-        System.out.println("7 - Buscas Avançadas");
+        System.out.println("5 - Relatórios de Estoque");
+        System.out.println("6 - Buscas Avançadas");
+        System.out.println("7 - Criação de Pedido de Produção");
+        System.out.println("8 - Iniciar Linha(s) de Produção");
         System.out.println("0 - Sair");
         System.out.println();
     }
@@ -53,13 +54,6 @@ public class MenuHelper {
         System.out.println();
     }
 
-    public static void imprimirMenuMovimentarEstoque() {
-        System.out.println("===============================");
-        System.out.println("    MOVIMENTAÇÃO DE ESTOQUE    ");
-        System.out.println("===============================");
-        System.out.println();
-    }
-
     public static void imprimirMenuRelatorios() {
         System.out.println("===============================");
         System.out.println("     RELATÓRIOS DE ESTOQUE     ");
@@ -76,9 +70,23 @@ public class MenuHelper {
         System.out.println("===============================");
         System.out.println("         BUSCA AVANÇADA        ");
         System.out.println("===============================");
+        System.out.println();
+    }
+
+    public static void imprimirMenuCriacaoDePedidoDeProducao() {
+        System.out.println("===============================");
+        System.out.println("    CRIAR PEDIDO DE PRODUÇÃO   ");
+        System.out.println("===============================");
         System.out.println("1 - Busca por Nome (parte do nome)");
         System.out.println("2 - Busca por Preço (maior que)");
         System.out.println("0 - Voltar");
+    }
+
+    public static void imprimirMenuInicioLinhaDeProducao() {
+        System.out.println("===============================");
+        System.out.println("  INICIAR LINHA(S) DE PRODUÇÃO ");
+        System.out.println("===============================");
+        System.out.println();
     }
 
     public static void imprimirBuscaNome() {

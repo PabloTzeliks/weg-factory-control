@@ -26,7 +26,7 @@ public class PedidoProducao {
 
     // Getters
     public int getIdPedido() { return id; }
-    public void setIdPedido(int id) { this.id = id }
+    public void setIdPedido(int id) { this.id = id; }
     public Equipamento getPrototipo() { return prototipo; }
     public int getQuantidadeAProduzir() { return quantidadeProduzir; }
     public Map<CodigoProducao, StatusProducao> getItensProduzidos() { return itensProducao; }

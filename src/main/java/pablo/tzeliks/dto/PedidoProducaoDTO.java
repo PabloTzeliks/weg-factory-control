@@ -6,5 +6,5 @@ import pablo.tzeliks.model.enums.StatusProducao;
 
 import java.util.Map;
 
-public record PedidoProducaoDTO(int id, Equipamento equipamento, int quantidadeProduzir, Map<CodigoProducao, StatusProducao> itensProducao) {
+public record PedidoProducaoDTO(int id, EquipamentoDTO equipamento, int quantidadeProduzir, Map<CodigoProducao, StatusProducao> itensProducao) {
 }

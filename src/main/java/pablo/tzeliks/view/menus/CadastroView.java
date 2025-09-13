@@ -59,8 +59,6 @@ public class CadastroView {
 
         if (tipo == TipoEquipamento.MOTOR_ELETRICO) {
             potencia = InputHelper.lerDouble(scanner, "Potência (kW): ");
-        } else if (tipo == TipoEquipamento.PAINEL_CONTROLE) {
-            tensao = InputHelper.lerInteiro(scanner, "Tensão (V): ");
         }
 
         // Enviar Dados como DTO
@@ -72,14 +70,8 @@ public class CadastroView {
                 return;
             }
 
-            if (tipo == TipoEquipamento.PAINEL_CONTROLE && tensao == null) {
-                MessageHelper.erro("Tensão é obrigatória para painel. Cadastro cancelado.");
-                return;
-            }
-
             // QUICKFIX: converter wrappers para primitivos antes de chamar o construtor que espera primitivos
             double potenciaVal = (potencia != null) ? potencia.doubleValue() : 0.0;
-            double tensaoVal = (tensao != null) ? tensao.doubleValue() : 0.0;
 
             dto = new EquipamentoDTO(
                     0, // Para o sistema definir o ID
@@ -88,8 +80,7 @@ public class CadastroView {
                     quantidade,
                     preco,
                     tipo,
-                    potenciaVal,
-                    tensaoVal
+                    potenciaVal
             );
         } catch (Exception e) {
             MessageHelper.erro("Erro ao construir EquipamentoDTO. Verifique a assinatura do construtor/record. Detalhe: " + e.getMessage());

@@ -1,6 +1,7 @@
 package pablo.tzeliks.view;
 
 import pablo.tzeliks.service.EstoqueService;
+import pablo.tzeliks.service.ProducaoService;
 import pablo.tzeliks.view.helpers.InputHelper;
 import pablo.tzeliks.view.helpers.MenuHelper;
 import pablo.tzeliks.view.helpers.MessageHelper;
@@ -10,11 +11,13 @@ import java.util.Scanner;
 
 public class ConsoleController {
 
-    private final EstoqueService service;
+    private final EstoqueService serviceEstoque;
+    private final ProducaoService serviceProducao;
     private final Scanner scanner;
 
-    public ConsoleController(EstoqueService service) {
-        this.service = service;
+    public ConsoleController(EstoqueService serviceEstoque, ProducaoService serviceProducao) {
+        this.serviceEstoque = serviceEstoque;
+        this.serviceProducao = serviceProducao;
         this.scanner = new Scanner(System.in);
     }
 
@@ -25,28 +28,28 @@ public class ConsoleController {
             opcao = InputHelper.lerInteiro(scanner, "Digite a opção desejada: ");
             switch (opcao) {
                 case 1:
-                    CadastroView.executar(scanner, service);
+                    CadastroView.executar(scanner, serviceEstoque);
                     break;
                 case 2:
-                    ListarView.executar(scanner, service);
+                    ListarView.executar(scanner, serviceEstoque);
                     break;
                 case 3:
-                    PesquisaView.executar(scanner, service);
+                    PesquisaView.executar(scanner, serviceEstoque);
                     break;
                 case 4:
-                    RemocaoView.executar(scanner, service);
+                    RemocaoView.executar(scanner, serviceEstoque);
                     break;
                 case 5:
-                    RelatoriosView.executar(scanner, service);
+                    RelatoriosView.executar(scanner, serviceEstoque);
                     break;
                 case 6:
-                    BuscaAvancadaView.executar(scanner, service);
+                    BuscaAvancadaView.executar(scanner, serviceEstoque);
                     break;
                 case 7:
-                    CriarPedidoDeProducao.executar(scanner, service);
+                    CriarPedidoDeProducao.executar(scanner, serviceProducao, serviceEstoque);
                     break;
                 case 8:
-                    IniciarLinhaDeProducao.executar(scanner, service);
+                    IniciarLinhaDeProducao.executar(scanner, serviceProducao);
                     break;
                 case 0:
                     System.out.println("Saindo...");
