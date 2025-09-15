@@ -1,5 +1,8 @@
 package pablo.tzeliks;
 
+import org.mapstruct.factory.Mappers;
+import pablo.tzeliks.mapper.EquipamentoMapper;
+import pablo.tzeliks.mapper.PedidoProducaoMapper;
 import pablo.tzeliks.service.EstoqueService;
 import pablo.tzeliks.service.ProducaoService;
 import pablo.tzeliks.view.ConsoleController;
@@ -32,10 +35,15 @@ public class Main {
     public static void main(String[] args) {
 
         EstoqueService serviceEstoque = new EstoqueService();
-        ProducaoService serviceProducao = new ProducaoService();
 
+        ProducaoService serviceProducao = new ProducaoService(
+                Mappers.getMapper(PedidoProducaoMapper.class),
+                Mappers.getMapper(EquipamentoMapper.class),
+                serviceEstoque
+        );
+
+        // 3. O resto do seu código continua igual.
         ConsoleController inicio = new ConsoleController(serviceEstoque, serviceProducao);
-
         inicio.iniciar();
     }
 }

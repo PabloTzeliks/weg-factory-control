@@ -1,6 +1,7 @@
 package pablo.tzeliks.view.menus;
 
 import pablo.tzeliks.dto.EquipamentoDTO;
+import pablo.tzeliks.dto.PedidoProducaoDTO;
 import pablo.tzeliks.model.domain.Codigo;
 import pablo.tzeliks.service.EstoqueService;
 import pablo.tzeliks.service.ProducaoService;
@@ -13,7 +14,7 @@ import java.util.Scanner;
 
 public class CriarPedidoDeProducao {
 
-    public static void execute(Scanner scanner, ProducaoService service, EstoqueService estoqueService) {
+    public static void executar(Scanner scanner, ProducaoService service) {
 
         MenuHelper.imprimirMenuCriacaoDePedidoDeProducao();
 
@@ -27,24 +28,37 @@ public class CriarPedidoDeProducao {
             return;
         }
 
+//        EquipamentoDTO equipamentoDTO;
+
+//        try {
+//            equipamentoDTO = estoqueService.acharPorCodigo(codigo);
+//            if (equipamentoDTO == null) {
+//                MessageHelper.erro("Equipamento com código " + codigo + " não encontrado no estoque.");
+//                return;
+//            } else {
+//                EquipamentoPrinter.imprimirEquipamento(equipamentoDTO);
+//            }
+//        } catch (Exception e) {
+//            MessageHelper.erro("Falha ao buscar equipamento no estoque: " + e.getMessage());
+//            return;
+//        }
+
+        int quantidade = 0;
+
         try {
-            EquipamentoDTO dto = estoqueService.acharPorCodigo(codigo);
-            if (dto == null) {
-                MessageHelper.info("Equipamento não encontrado.");
-            } else {
-                EquipamentoPrinter.imprimirEquipamento(dto);
 
-
-            }
+            quantidade = InputHelper.lerInteiro(scanner, "Informe a quantidade a produzir: ");
 
         } catch (Exception e) {
-            MessageHelper.erro("Falha ao buscar equipamento: " + e.getMessage());
+            MessageHelper.erro("Falha ao inserir quantidade do Pedido de Produção, observe: " + e.getMessage());
+            return;
         }
 
-
-
-
-
+        try {
+            service.criarPedidoProducao(0, codigo, quantidade);
+            MessageHelper.sucesso("Pedido de Produção criado com sucesso.");
+        } catch (Exception e) {
+            MessageHelper.erro("Falha ao criar Pedido de Produção: " + e.getMessage());
+        }
     }
-
 }

@@ -43,18 +43,13 @@ public class InputHelper {
             System.out.println();
 
             System.out.println("Tipos de Equipamento:\n" +
-                    "\n1- Motor Elétrico" +
-                    "\n2- Painel Controle\n");
+                    "\n1- Motor Elétrico \n");
 
             String input = scanner.nextLine();
 
             try {
                 if (input.equals("1")) {
                     TipoEquipamento tipo = TipoEquipamento.MOTOR_ELETRICO;
-
-                    return tipo;
-                } else if (input.equals("2")) {
-                    TipoEquipamento tipo = TipoEquipamento.PAINEL_CONTROLE;
 
                     return tipo;
                 } else {

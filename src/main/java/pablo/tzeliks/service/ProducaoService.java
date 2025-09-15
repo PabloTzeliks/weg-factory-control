@@ -1,12 +1,14 @@
 package pablo.tzeliks.service;
 
 import org.mapstruct.factory.Mappers;
+import pablo.tzeliks.dto.EquipamentoDTO;
 import pablo.tzeliks.dto.PedidoProducaoDTO;
 import pablo.tzeliks.exceptions.ServiceException;
 import pablo.tzeliks.mapper.EquipamentoMapper;
 import pablo.tzeliks.mapper.PedidoProducaoMapper;
 import pablo.tzeliks.model.Equipamento;
 import pablo.tzeliks.model.PedidoProducao;
+import pablo.tzeliks.model.domain.Codigo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,32 +20,26 @@ public class ProducaoService {
     private int proximoId = 1;
 
     private PedidoProducaoMapper producaoMapper;
-    private final EquipamentoFactory factory;
+    private EquipamentoMapper equipamentoMapper;
+    private final EstoqueService estoqueService;
 
-    public ProducaoService(PedidoProducaoMapper producaoMapper, EquipamentoFactory factory) {
+    public ProducaoService(PedidoProducaoMapper producaoMapper, EquipamentoMapper equipamentoMapper, EstoqueService estoqueService) {
         this.producaoMapper = Objects.requireNonNull(producaoMapper);
-        this.factory = Objects.requireNonNull(factory);
+        this.equipamentoMapper = Objects.requireNonNull(equipamentoMapper);
+        this.estoqueService = Objects.requireNonNull(estoqueService);
     }
 
-    public ProducaoService() {
-        this.producaoMapper = Mappers.getMapper(PedidoProducaoMapper.class);
-        this.factory = new EquipamentoFactory();
-    }
+    public void criarPedidoProducao(int id, Codigo codigo, int quantidadeProduzir) {
 
-    public void criarPedidoProducao(PedidoProducaoDTO dto) {
+        if (codigo == null) throw new ServiceException("Código nulo.");
 
-        if (dto == null) throw new ServiceException("DTO nulo.");
+        Equipamento prototipo = estoqueService.acharPorCodigoEntidade(codigo);
 
-        Equipamento prototipo = EquipamentoFactory.fromDTO(dto.equipamento());
-
-
-
-        PedidoProducao pedidoProducao = producaoMapper.toEntity(dto);
-
-
-        if (pedidoProducao == null) {
-            throw new ServiceException("Erro ao criar o Pedido de Produção a partir do DTO.");
+        if (prototipo == null) {
+            throw new ServiceException("Prototipo com código " + codigo + " não encontrado no estoque.");
         }
+
+        PedidoProducao pedidoProducao = new PedidoProducao(id, prototipo, quantidadeProduzir);
 
         validarPedidoProducao(pedidoProducao);
 
