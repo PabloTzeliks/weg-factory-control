@@ -10,15 +10,17 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class LinhaDeProducao implements Runnable {
 
     private final PedidoProducao pedido;
+    private final int idLinha;
     private static final AtomicInteger contadorSerial = new AtomicInteger(1);
 
-    public LinhaDeProducao(PedidoProducao pedido) {
+    public LinhaDeProducao(PedidoProducao pedido, AtomicInteger contadorSerial) {
         this.pedido = pedido;
+        this.idLinha = contadorSerial.getAndIncrement();
     }
 
     @Override
     public void run() {
-        System.out.println("Linha de Produção de ID " + contadorSerial + " | Acabou de Iniciar");
+        System.out.println("Linha de Produção de ID " + idLinha + " | Acabou de Iniciar");
 
         for (int i = 0; i < pedido.getQuantidadeAProduzir(); i++) {
             StatusProducao status = StatusProducao.getRandomStatus();
@@ -33,29 +35,10 @@ public class LinhaDeProducao implements Runnable {
                 Thread.sleep((long) (Math.random() * 200 + 50)); // Simula tempo
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
-                System.err.println("🛑 Linha de ID " + contadorSerial + " foi interrompida.");
+                System.err.println("🛑 Linha de ID " + idLinha + " foi interrompida.");
                 break;
             }
         }
-        System.out.println("✅ Linha de Produção de ID " + contadorSerial + " finalizou.");
+        System.out.println("✅ Linha de Produção de ID " + idLinha + " finalizou.\n");
     }
-
-//    private Equipamento criarInstancia(Equipamento prototipo) {
-//        int novoId = contadorSerial.getAndIncrement();
-//        Codigo novoCodigo = new Codigo("WEG-" + String.format("%04d", novoId));
-//
-//        if (prototipo instanceof MotorEletrico) {
-//            MotorEletrico prototipoMotor = (MotorEletrico) prototipo;
-//            return new MotorEletrico(
-//                    novoId,
-//                    prototipoMotor.getNome(),
-//                    novoCodigo,
-//                    1,
-//                    prototipoMotor.getPreco(),
-//                    prototipoMotor.getTipoEquipamento(),
-//                    prototipoMotor.getPotencia()
-//            );
-//        }
-//        throw new IllegalArgumentException("Tipo de protótipo não suportado: " + prototipo.getClass());
-//    }
 }

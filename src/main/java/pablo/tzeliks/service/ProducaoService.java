@@ -7,6 +7,7 @@ import pablo.tzeliks.exceptions.ServiceException;
 import pablo.tzeliks.mapper.EquipamentoMapper;
 import pablo.tzeliks.mapper.PedidoProducaoMapper;
 import pablo.tzeliks.model.Equipamento;
+import pablo.tzeliks.model.LinhaDeProducao;
 import pablo.tzeliks.model.PedidoProducao;
 import pablo.tzeliks.model.domain.Codigo;
 
@@ -57,6 +58,16 @@ public class ProducaoService {
 
         listaPedidoProducao.add(pedidoProducao);
 
+    }
+
+    public void iniciarLinhasDeProducao() {
+
+        if (listaPedidoProducao.isEmpty()) { throw new ServiceException("Não há nenhum Pedido de Produção cadastrado."); }
+
+        for (PedidoProducao pedido : listaPedidoProducao) {
+            Thread linhaThread = new Thread(new LinhaDeProducao(pedido));
+            linhaThread.start();
+        }
     }
 
     private PedidoProducao acharPorIdEntidade(int id) {

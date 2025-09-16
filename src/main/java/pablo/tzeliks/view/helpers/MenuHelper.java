@@ -77,9 +77,7 @@ public class MenuHelper {
         System.out.println("===============================");
         System.out.println("    CRIAR PEDIDO DE PRODUÇÃO   ");
         System.out.println("===============================");
-        System.out.println("1 - Busca por Nome (parte do nome)");
-        System.out.println("2 - Busca por Preço (maior que)");
-        System.out.println("0 - Voltar");
+        System.out.println();
     }
 
     public static void imprimirMenuInicioLinhaDeProducao() {

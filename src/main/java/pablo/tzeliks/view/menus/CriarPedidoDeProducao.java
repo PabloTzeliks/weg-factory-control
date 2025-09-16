@@ -1,11 +1,7 @@
 package pablo.tzeliks.view.menus;
 
-import pablo.tzeliks.dto.EquipamentoDTO;
-import pablo.tzeliks.dto.PedidoProducaoDTO;
 import pablo.tzeliks.model.domain.Codigo;
-import pablo.tzeliks.service.EstoqueService;
 import pablo.tzeliks.service.ProducaoService;
-import pablo.tzeliks.view.helpers.EquipamentoPrinter;
 import pablo.tzeliks.view.helpers.InputHelper;
 import pablo.tzeliks.view.helpers.MenuHelper;
 import pablo.tzeliks.view.helpers.MessageHelper;

@@ -48,9 +48,9 @@ public class ConsoleController {
                 case 7:
                     CriarPedidoDeProducao.executar(scanner, serviceProducao);
                     break;
-//                case 8:
-//                    IniciarLinhaDeProducao.executar(scanner, serviceProducao);
-//                    break;
+                case 8:
+                    IniciarLinhaDeProducao.executar(serviceProducao);
+                    break;
                 case 0:
                     System.out.println("Saindo...");
                     break;

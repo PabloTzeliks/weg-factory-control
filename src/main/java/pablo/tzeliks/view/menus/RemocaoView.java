@@ -6,7 +6,6 @@ import pablo.tzeliks.service.EstoqueService;
 import pablo.tzeliks.view.helpers.InputHelper;
 import pablo.tzeliks.view.helpers.MenuHelper;
 import pablo.tzeliks.view.helpers.MessageHelper;
-import pablo.tzeliks.view.helpers.EquipamentoPrinter;
 
 import java.util.Scanner;
 
