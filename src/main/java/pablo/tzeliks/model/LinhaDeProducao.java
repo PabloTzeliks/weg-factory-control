@@ -13,7 +13,7 @@ public class LinhaDeProducao implements Runnable {
     private final int idLinha;
     private static final AtomicInteger contadorSerial = new AtomicInteger(1);
 
-    public LinhaDeProducao(PedidoProducao pedido, AtomicInteger contadorSerial) {
+    public LinhaDeProducao(PedidoProducao pedido) {
         this.pedido = pedido;
         this.idLinha = contadorSerial.getAndIncrement();
     }

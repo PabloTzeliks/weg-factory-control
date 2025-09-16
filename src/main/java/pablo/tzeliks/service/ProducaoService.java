@@ -64,9 +64,18 @@ public class ProducaoService {
 
         if (listaPedidoProducao.isEmpty()) { throw new ServiceException("Não há nenhum Pedido de Produção cadastrado."); }
 
+        List<Thread> threads = new ArrayList<>();
         for (PedidoProducao pedido : listaPedidoProducao) {
             Thread linhaThread = new Thread(new LinhaDeProducao(pedido));
             linhaThread.start();
+            threads.add(linhaThread);
+        }
+
+        // Aguarda todas as threads terminarem
+        for (Thread t : threads) {
+            try {
+                t.join();
+            } catch (InterruptedException e) { Thread.currentThread().interrupt(); }
         }
     }
 
