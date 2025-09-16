@@ -1,8 +1,5 @@
 package pablo.tzeliks.service;
 
-import org.mapstruct.factory.Mappers;
-import pablo.tzeliks.dto.EquipamentoDTO;
-import pablo.tzeliks.dto.PedidoProducaoDTO;
 import pablo.tzeliks.exceptions.ServiceException;
 import pablo.tzeliks.mapper.EquipamentoMapper;
 import pablo.tzeliks.mapper.PedidoProducaoMapper;
